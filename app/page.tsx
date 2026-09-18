@@ -3,11 +3,165 @@
 import Image from "next/image";
 import { useState } from "react";
 
+const IMG = {
+  // =========================
+  // VEGETARIAN
+  // =========================
+
+  veg: [
+    "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1593986799230-f9755e668580?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  paneer: [
+    "https://images.unsplash.com/photo-1666001120694-3ebe8fd207be?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1720787066625-ba5e3e3b8ca7?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  mushroom: [
+    "https://images.unsplash.com/photo-1508338712271-40539c947a8b?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1565299507177-b0ac66763828?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  gobi: [
+    "https://images.unsplash.com/photo-1628294895950-9805252327bc?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  babyCorn: [
+    "https://images.unsplash.com/photo-1593986799230-f9755e668580?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  kaju: [
+    "https://images.unsplash.com/photo-1599599810694-57a9a2c4d4a5?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1536591375737-5d2f2e7e5c16?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  dal: [
+    "https://images.unsplash.com/photo-1626500154744-e4b394ffea16?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // EGG
+  // =========================
+
+  egg: [
+    "https://images.unsplash.com/photo-1626895597772-74988e263fab?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1587486913049-53fc88980cfc?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1507248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // CHICKEN
+  // =========================
+
+  chicken: [
+    "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1605908580297-f3e1c02e64ff?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // MUTTON
+  // =========================
+
+  mutton: [
+    "https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1606843046080-45bf7a23c39f?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // FISH
+  // =========================
+
+  fish: [
+    "https://images.unsplash.com/photo-1579208030886-b937da0925dc?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1654863404432-cac67587e25d?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // BIRYANI
+  // =========================
+
+  biryani: [
+    "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1642972420043-4736c570a716?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1596560520688-e1ecc9da2099?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1691171047312-d809eccef46d?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // RICE / FRIED RICE
+  // =========================
+
+  rice: [
+    "https://images.unsplash.com/photo-1647577931985-e0c3e8fb815c?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1626500154744-e4b394ffea16?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // INDIAN BREADS
+  // =========================
+
+  breads: [
+    "https://images.unsplash.com/photo-1697155406014-04dc649b0953?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1565557623262-b51c2513a641?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // TANDOORI
+  // =========================
+
+  tandoori: [
+    "https://images.unsplash.com/photo-1666001120694-3ebe8fd207be?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1605908580297-f3e1c02e64ff?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // BEVERAGES
+  // =========================
+
+  beverages: [
+    "https://images.unsplash.com/photo-1616118132534-381148898bb4?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1590430752967-d0e116909be1?auto=format&fit=crop&w=600&q=75",
+  ],
+
+  // =========================
+  // SPECIALS
+  // =========================
+
+  specials: [
+    "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1606843046080-45bf7a23c39f?auto=format&fit=crop&w=600&q=75",
+    "https://images.unsplash.com/photo-1750190624608-57ceddba8d69?auto=format&fit=crop&w=600&q=75",
+  ],
+} as const;
+
+
+
+
+
+type ImageCategory = keyof typeof IMG;
+
 type MenuItem = {
   name: string;
-  price: number;
+  price?: number;
   description: string;
-  image: string;
+  imageCategory: ImageCategory;
 };
 
 type SubSection = {
@@ -15,71 +169,40 @@ type SubSection = {
   items: MenuItem[];
 };
 
+
 type MenuSection = {
   id: string;
   label: string;
   subsections: SubSection[];
 };
 
-const IMG = {
-  vegManchurian:
-    "https://images.unsplash.com/photo-1682622110433-65513a55d7da?auto=format&fit=crop&w=500&q=60",
-  paneerStarter:
-    "https://images.unsplash.com/photo-1666001120694-3ebe8fd207be?auto=format&fit=crop&w=500&q=60",
-  chilliPaneer:
-    "https://images.unsplash.com/photo-1720787066625-ba5e3e3b8ca7?auto=format&fit=crop&w=500&q=60",
-  mushroomStarter:
-    "https://images.unsplash.com/photo-1508338712271-40539c947a8b?auto=format&fit=crop&w=500&q=60",
-  crispyCorn:
-    "https://images.unsplash.com/photo-1593986799230-f9755e668580?auto=format&fit=crop&w=500&q=60",
-  paneerCurry:
-    "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=500&q=60",
-  vegCurry:
-    "https://images.unsplash.com/photo-1585937421612-70a008356fbe?auto=format&fit=crop&w=500&q=60",
-  dal: "https://images.unsplash.com/photo-1626500154744-e4b394ffea16?auto=format&fit=crop&w=500&q=60",
-  eggStarter:
-    "https://images.unsplash.com/photo-1626895597772-74988e263fab?auto=format&fit=crop&w=500&q=60",
-  eggCurry:
-    "https://images.unsplash.com/photo-1764315197254-94385571df22?auto=format&fit=crop&w=500&q=60",
-  eggBiryani:
-    "https://images.unsplash.com/photo-1642972420043-4736c570a716?auto=format&fit=crop&w=500&q=60",
-  chickenStarter:
-    "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=500&q=60",
-  chickenLollipop:
-    "https://images.unsplash.com/photo-1605908580297-f3e1c02e64ff?auto=format&fit=crop&w=500&q=60",
-  muttonStarter:
-    "https://images.unsplash.com/photo-1633321702518-7feccafb94d5?auto=format&fit=crop&w=500&q=60",
-  fishFry:
-    "https://images.unsplash.com/photo-1579208030886-b937da0925dc?auto=format&fit=crop&w=500&q=60",
-  butterChicken:
-    "https://images.unsplash.com/photo-1728910107534-e04e261768ae?auto=format&fit=crop&w=500&q=60",
-  muttonCurry:
-    "https://images.unsplash.com/photo-1606843046080-45bf7a23c39f?auto=format&fit=crop&w=500&q=60",
-  fishCurry:
-    "https://images.unsplash.com/photo-1654863404432-cac67587e25d?auto=format&fit=crop&w=500&q=60",
-  chickenBiryani:
-    "https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=500&q=60",
-  muttonBiryani:
-    "https://images.unsplash.com/photo-1691171047312-d809eccef46d?auto=format&fit=crop&w=500&q=60",
-  vegBiryani:
-    "https://images.unsplash.com/photo-1596560520688-e1ecc9da2099?auto=format&fit=crop&w=500&q=60",
-  steamedRice:
-    "https://images.unsplash.com/photo-1647577931985-e0c3e8fb815c?auto=format&fit=crop&w=500&q=60",
-  friedRice:
-    "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=500&q=60",
-  noodles:
-    "https://images.unsplash.com/photo-1617622141675-d3005b9067c5?auto=format&fit=crop&w=500&q=60",
-  naanBread:
-    "https://images.unsplash.com/photo-1697155406014-04dc649b0953?auto=format&fit=crop&w=500&q=60",
-  mineralWater:
-    "https://images.unsplash.com/photo-1616118132534-381148898bb4?auto=format&fit=crop&w=500&q=60",
-  softDrinks:
-    "https://images.unsplash.com/photo-1590430752967-d0e116909be1?auto=format&fit=crop&w=500&q=60",
-  tandooriPlatter:
-    "https://images.unsplash.com/photo-1750190624608-57ceddba8d69?auto=format&fit=crop&w=500&q=60",
-  thali:
-    "https://images.unsplash.com/photo-1680993032090-1ef7ea9b51e5?auto=format&fit=crop&w=500&q=60",
-} as const;
+
+
+function hashString(value: string): number {
+  let hash = 0;
+
+  for (let i = 0; i < value.length; i++) {
+    hash = (hash << 5) - hash + value.charCodeAt(i);
+    hash |= 0;
+  }
+
+  return Math.abs(hash);
+}
+
+function getMenuImage(
+  itemName: string,
+  category: ImageCategory
+): string {
+  const images = IMG[category];
+
+  if (!images.length) {
+    return "";
+  }
+
+  const index = hashString(itemName) % images.length;
+
+  return images[index];
+}
 
 const menuSections: MenuSection[] = [
   {
@@ -90,112 +213,136 @@ const menuSections: MenuSection[] = [
         title: "Starters",
         items: [
           {
-            name: "Veg Manchurian Dry",
-            price: 180,
-            description:
-              "Crispy vegetable balls tossed in a tangy Indo-Chinese Manchurian sauce.",
-            image: IMG.vegManchurian,
+            name: "Onion Rings",
+            price: 130,
+            description: "Crispy onion rings coated in a light seasoned batter and fried until golden.",
+            imageCategory: "veg",
           },
           {
-            name: "Gobi Manchurian",
-            price: 170,
-            description:
-              "Golden fried cauliflower florets glazed in spicy Manchurian sauce.",
-            image: IMG.vegManchurian,
+            name: "Onion Pakoda",
+            price: 130,
+            description: "Crispy onion fritters prepared with seasoned gram flour and spices.",
+            imageCategory: "veg",
           },
           {
-            name: "Chilli Gobi",
-            price: 170,
-            description:
-              "Crunchy cauliflower tossed with bell peppers, onions and fiery chilli sauce.",
-            image: IMG.vegManchurian,
+            name: "Capsicum Bajji",
+            price: 130,
+            description: "Capsicum coated in spiced gram-flour batter and fried until crisp.",
+            imageCategory: "veg",
           },
           {
-            name: "Paneer Tikka",
-            price: 220,
-            description:
-              "Char-grilled cottage cheese cubes marinated in yogurt and tandoori spices.",
-            image: IMG.paneerStarter,
-          },
-          {
-            name: "Paneer 65",
-            price: 210,
-            description:
-              "Deep-fried spiced paneer bites tossed in a fiery South Indian style masala.",
-            image: IMG.paneerStarter,
-          },
-          {
-            name: "Chilli Paneer",
-            price: 210,
-            description:
-              "Crispy paneer stir-fried with peppers, onions and a spicy chilli-garlic sauce.",
-            image: IMG.chilliPaneer,
-          },
-          {
-            name: "Mushroom Pepper Fry",
+            name: "Kaju Dry",
             price: 190,
-            description:
-              "Button mushrooms sautéed with crushed black pepper and curry leaves.",
-            image: IMG.mushroomStarter,
+            description: "Crispy cashews tossed with aromatic spices for a rich and crunchy starter.",
+            imageCategory: "veg",
+          },
+          {
+            name: "Mushroom Manchurian",
+            price: 170,
+            description: "Crispy mushrooms tossed in a tangy and spicy Manchurian sauce.",
+            imageCategory: "veg",
+          },
+          {
+            name: "Mushroom Chilli",
+            price: 170,
+            description: "Mushrooms stir-fried with peppers, onions and a spicy chilli sauce.",
+            imageCategory: "mushroom",
+          },
+          {
+            name: "Mushroom Dry",
+            price: 170,
+            description: "Crispy mushrooms tossed with aromatic spices and served dry.",
+            imageCategory: "mushroom",
+          },
+          {
+            name: "Mushroom Kabab",
+            price: 180,
+            description: "Seasoned mushrooms prepared in a flavorful kebab style.",
+            imageCategory: "mushroom",
           },
           {
             name: "Mushroom 65",
-            price: 190,
-            description:
-              "Crispy fried mushrooms coated in a spicy, tangy 65-style masala.",
-            image: IMG.mushroomStarter,
+            price: 170,
+            description: "Crispy mushroom pieces coated in a spicy South Indian 65-style masala.",
+            imageCategory: "mushroom",
           },
           {
-            name: "Crispy Corn",
-            price: 160,
-            description:
-              "Golden fried sweet corn kernels tossed with pepper and spring onions.",
-            image: IMG.crispyCorn,
+            name: "Gobi Manchurian",
+            price: 130,
+            description: "Crispy cauliflower florets tossed in a tangy Manchurian sauce.",
+            imageCategory: "gobi",
+          },
+          {
+            name: "Gobi Chilli",
+            price: 130,
+            description: "Crispy cauliflower tossed with peppers, onions and chilli sauce.",
+            imageCategory: "gobi",
+          },
+          {
+            name: "Gobi Dry",
+            price: 130,
+            description: "Crispy cauliflower seasoned with aromatic spices and served dry.",
+            imageCategory: "gobi",
           },
           {
             name: "Baby Corn Manchurian",
+            price: 170,
+            description: "Crispy baby corn tossed in a tangy Indo-Chinese Manchurian sauce.",
+            imageCategory: "babyCorn",
+          },
+          {
+            name: "Baby Corn Chilli",
+            price: 170,
+            description: "Baby corn stir-fried with peppers, onions and spicy chilli sauce.",
+            imageCategory: "babyCorn",
+          },
+          {
+            name: "Baby Corn Dry",
+            price: 170,
+            description: "Crispy baby corn tossed with aromatic spices and served dry.",
+            imageCategory: "babyCorn",
+          },
+          {
+            name: "Baby Corn 65",
+            price: 170,
+            description: "Crispy baby corn coated in a spicy 65-style masala.",
+            imageCategory: "babyCorn",
+          },
+          {
+            name: "Baby Corn Kabab",
             price: 180,
-            description:
-              "Crunchy baby corn fritters tossed in classic Manchurian sauce.",
-            image: IMG.crispyCorn,
-          },
-        ],
-      },
-      {
-        title: "Paneer Specials",
-        items: [
-          {
-            name: "Paneer Butter Masala",
-            price: 260,
-            description:
-              "Soft paneer cubes simmered in a rich, buttery tomato gravy.",
-            image: IMG.paneerCurry,
+            description: "Seasoned baby corn prepared in a flavorful kebab style.",
+            imageCategory: "babyCorn",
           },
           {
-            name: "Kadai Paneer",
-            price: 250,
-            description: "Paneer and bell peppers cooked in a bold kadai masala.",
-            image: IMG.paneerCurry,
+            name: "Paneer Manchurian",
+            price: 170,
+            description: "Crispy paneer pieces tossed in a tangy and spicy Manchurian sauce.",
+            imageCategory: "paneer",
           },
           {
-            name: "Shahi Paneer",
-            price: 260,
-            description:
-              "Paneer in a creamy, mildly sweet cashew-based royal gravy.",
-            image: IMG.paneerCurry,
+            name: "Paneer Chilli",
+            price: 170,
+            description: "Paneer tossed with peppers, onions and a spicy chilli sauce.",
+            imageCategory: "paneer",
           },
           {
-            name: "Paneer Tikka Masala",
-            price: 270,
-            description:
-              "Grilled paneer tikka simmered in a spiced onion-tomato gravy.",
-            image: IMG.paneerCurry,
+            name: "Paneer Dry",
+            price: 180,
+            description: "Crispy paneer tossed with aromatic spices and served dry.",
+            imageCategory: "paneer",
           },
           {
-            name: "Palak Paneer",
-            price: 240,
-            description: "Paneer cubes in a smooth, spiced spinach purée.",
-            image: IMG.paneerCurry,
+            name: "Paneer Kabab",
+            price: 180,
+            description: "Seasoned paneer prepared in a flavorful kebab style.",
+            imageCategory: "paneer",
+          },
+          {
+            name: "Paneer 65",
+            price: 180,
+            description: "Crispy paneer pieces coated in a spicy 65-style masala.",
+            imageCategory: "paneer",
           },
         ],
       },
@@ -203,493 +350,604 @@ const menuSections: MenuSection[] = [
         title: "Veg Curries",
         items: [
           {
-            name: "Mix Veg Curry",
-            price: 200,
-            description: "Seasonal vegetables simmered in a lightly spiced curry.",
-            image: IMG.vegCurry,
+            name: "Veg Kadai",
+            price: 170,
+            description: "Mixed vegetables cooked with peppers and aromatic kadai spices.",
+            imageCategory: "veg",
           },
           {
             name: "Veg Kolhapuri",
-            price: 210,
-            description:
-              "Mixed vegetables in a fiery Kolhapuri-style spiced gravy.",
-            image: IMG.vegCurry,
+            price: 170,
+            description: "Mixed vegetables cooked in a bold and spicy Kolhapuri-style gravy.",
+            imageCategory: "veg",
           },
           {
-            name: "Veg Kadai",
-            price: 210,
-            description: "Vegetables tossed in a robust kadai masala with peppers.",
-            image: IMG.vegCurry,
+            name: "Veg Hyderabadi",
+            price: 170,
+            description: "Mixed vegetables cooked in a rich Hyderabadi-style spiced gravy.",
+            imageCategory: "veg",
+          },
+          {
+            name: "Mushroom Masala",
+            price: 170,
+            description: "Mushrooms cooked in a rich, aromatic masala gravy.",
+            imageCategory: "mushroom",
+          },
+          {
+            name: "Mushroom Kadai",
+            price: 170,
+            description: "Mushrooms cooked with peppers and aromatic kadai spices.",
+            imageCategory: "mushroom",
+          },
+          {
+            name: "Kaju Masala",
+            price: 200,
+            description: "Cashews cooked in a rich and creamy spiced masala gravy.",
+            imageCategory: "kaju",
+          },
+          {
+            name: "Palak Paneer",
+            price: 190,
+            description: "Soft paneer cooked in a smooth, spiced spinach gravy.",
+            imageCategory: "paneer",
+          },
+          {
+            name: "Paneer Pulka",
+            price: 120,
+            description: "Paneer prepared as a flavorful accompaniment to soft Indian bread.",
+            imageCategory: "paneer",
+          },
+          {
+            name: "Paneer Butter Masala",
+            price: 190,
+            description: "Paneer simmered in a rich buttery tomato-based masala gravy.",
+            imageCategory: "paneer",
+          },
+          {
+            name: "Panner Kadai",
+            price: 190,
+            description: "Paneer cooked with peppers and aromatic kadai spices.",
+            imageCategory: "paneer",
           },
           {
             name: "Dal Tadka",
-            price: 160,
-            description:
-              "Yellow lentils tempered with garlic, cumin and dried red chillies.",
-            image: IMG.dal,
+            price: 130,
+            description: "Lentils finished with a flavorful tempering of spices.",
+            imageCategory: "dal",
+          },
+          {
+            name: "Tomato Curry",
+            price: 120,
+            description: "Tomatoes cooked into a flavorful Indian-style spiced curry.",
+            imageCategory: "veg",
           },
           {
             name: "Dal Fry",
-            price: 150,
-            description:
-              "Slow-cooked lentils finished with a smoky onion-tomato tempering.",
-            image: IMG.dal,
+            price: 110,
+            description: "Slow-cooked lentils finished with a savory spiced tempering.",
+            imageCategory: "dal",
           },
         ],
       },
     ],
   },
+
   {
     id: "egg",
     label: "Eggetarian",
     subsections: [
       {
-        title: "Starters",
+        title: "Egg Starters",
         items: [
           {
-            name: "Egg 65",
-            price: 140,
-            description:
-              "Boiled eggs deep-fried and tossed in a spicy 65-style masala.",
-            image: IMG.eggStarter,
-          },
-          {
-            name: "Chilli Egg",
+            name: "Egg Pepper Dry",
             price: 150,
-            description:
-              "Boiled eggs sautéed with peppers, onions and chilli-garlic sauce.",
-            image: IMG.eggStarter,
+            description: "Egg pieces tossed with crushed black pepper and aromatic spices.",
+            imageCategory: "egg",
           },
           {
-            name: "Egg Pakoda",
+            name: "Egg Bonda",
             price: 130,
-            description:
-              "Boiled eggs dipped in spiced gram-flour batter and fried crisp.",
-            image: IMG.eggStarter,
+            description: "Boiled egg coated in seasoned batter and fried until golden.",
+            imageCategory: "egg",
           },
           {
-            name: "Pepper Egg Fry",
+            name: "Egg 65",
             price: 150,
-            description:
-              "Boiled eggs pan-fried with crushed pepper and curry leaves.",
-            image: IMG.eggStarter,
+            description: "Crispy egg pieces tossed in a spicy 65-style masala.",
+            imageCategory: "egg",
+          },
+          {
+            name: "Egg Manchurian",
+            price: 150,
+            description: "Crispy egg pieces tossed in a tangy Indo-Chinese Manchurian sauce.",
+            imageCategory: "egg",
+          },
+          {
+            name: "Egg Chilli",
+            price: 150,
+            description: "Egg pieces stir-fried with peppers, onions and chilli sauce.",
+            imageCategory: "egg",
+          },
+          {
+            name: "Egg Kasthuri",
+            price: 150,
+            description: "Egg preparation flavored with aromatic spices and kasthuri-style seasoning.",
+            imageCategory: "egg",
           },
         ],
       },
       {
-        title: "Main Course",
+        title: "Egg Curries",
         items: [
           {
             name: "Egg Curry",
-            price: 170,
-            description: "Boiled eggs simmered in a spiced onion-tomato gravy.",
-            image: IMG.eggCurry,
+            price: 130,
+            description: "Boiled eggs simmered in a flavorful spiced curry gravy.",
+            imageCategory: "egg",
           },
           {
             name: "Egg Masala",
-            price: 180,
-            description: "Eggs cooked in a rich, spiced masala gravy.",
-            image: IMG.eggCurry,
-          },
-          {
-            name: "Egg Bhurji",
-            price: 160,
-            description:
-              "Indian-style scrambled eggs cooked with onions, tomatoes and spices.",
-            image: IMG.eggCurry,
+            price: 130,
+            description: "Eggs cooked in a rich and aromatic masala gravy.",
+            imageCategory: "egg",
           },
           {
             name: "Anda Kadai",
-            price: 190,
-            description: "Boiled eggs tossed in a bold kadai-style masala.",
-            image: IMG.eggCurry,
-          },
-          {
-            name: "Egg Rice",
-            price: 150,
-            description:
-              "Steamed rice tossed with scrambled eggs and mild spices.",
-            image: IMG.eggBiryani,
-          },
-          {
-            name: "Egg Fried Rice",
-            price: 170,
-            description: "Wok-tossed rice with egg, vegetables and soy seasoning.",
-            image: IMG.friedRice,
-          },
-          {
-            name: "Egg Biryani",
-            price: 220,
-            description: "Fragrant basmati rice layered with spiced boiled eggs.",
-            image: IMG.eggBiryani,
+            price: 130,
+            description: "Eggs cooked with peppers and bold kadai-style spices.",
+            imageCategory: "egg",
           },
         ],
       },
     ],
   },
+
   {
     id: "nonveg-starters",
-    label: "Non-Veg Starters",
+    label: "Non-Vegetarian Starters",
     subsections: [
       {
-        title: "Chicken",
+        title: "Chicken Starters",
         items: [
           {
             name: "Chicken 65",
-            price: 240,
-            description:
-              "Deep-fried spicy chicken bites in a classic South Indian marinade.",
-            image: IMG.chickenStarter,
+            price: 200,
+            description: "Crispy chicken pieces tossed in a spicy South Indian 65-style masala.",
+            imageCategory: "chicken",
           },
           {
             name: "Chilli Chicken",
-            price: 250,
-            description:
-              "Crispy chicken tossed with peppers, onions and spicy chilli sauce.",
-            image: IMG.chickenStarter,
+            price: 190,
+            description: "Chicken tossed with peppers, onions and spicy chilli sauce.",
+            imageCategory: "chicken",
+          },
+          {
+            name: "Guntur Chicken",
+            price: 190,
+            description: "Chicken prepared with a bold and spicy Guntur-style seasoning.",
+            imageCategory: "chicken",
+          },
+          {
+            name: "Andra Chilli Chicken",
+            price: 200,
+            description: "Spicy chicken preparation featuring Andhra-style chilli flavors.",
+            imageCategory: "chicken",
           },
           {
             name: "Pepper Chicken",
-            price: 250,
-            description:
-              "Chicken sautéed with coarsely crushed black pepper and curry leaves.",
-            image: IMG.chickenStarter,
+            price: 200,
+            description: "Chicken tossed with crushed black pepper and aromatic spices.",
+            imageCategory: "chicken",
           },
           {
-            name: "Dragon Chicken",
-            price: 260,
-            description:
-              "Crispy chicken tossed in a fiery Indo-Chinese dragon sauce with cashews.",
-            image: IMG.chickenStarter,
+            name: "Lemon Chicken",
+            price: 210,
+            description: "Chicken prepared with a bright lemon flavor and aromatic spices.",
+            imageCategory: "chicken",
+          },
+          {
+            name: "Chicken Kabab",
+            price: 160,
+            description: "Seasoned chicken prepared in a flavorful kebab style.",
+            imageCategory: "chicken",
+          },
+          {
+            name: "Chicken Manchurian",
+            price: 200,
+            description: "Crispy chicken tossed in a tangy Indo-Chinese Manchurian sauce.",
+            imageCategory: "chicken",
           },
           {
             name: "Chicken Lollipop",
-            price: 270,
-            description:
-              "Frenched chicken wings marinated and deep-fried to a spicy crisp.",
-            image: IMG.chickenLollipop,
+            price: 200,
+            description: "Chicken lollipop pieces marinated with spices and fried until crisp.",
+            imageCategory: "chicken",
           },
           {
-            name: "Chicken Tikka",
-            price: 260,
-            description:
-              "Char-grilled chicken chunks marinated in yogurt and tandoori spices.",
-            image: IMG.chickenLollipop,
+            name: "Kasturi Chicken",
+            price: 210,
+            description: "Chicken flavored with aromatic spices and kasthuri-style seasoning.",
+            imageCategory: "chicken",
           },
           {
-            name: "Tangdi Kebab",
-            price: 280,
-            description:
-              "Chicken drumsticks marinated in spiced yogurt and roasted in the tandoor.",
-            image: IMG.chickenLollipop,
-          },
-        ],
-      },
-      {
-        title: "Mutton",
-        items: [
-          {
-            name: "Mutton Pepper Fry",
-            price: 320,
-            description:
-              "Tender mutton pieces sautéed with black pepper and curry leaves.",
-            image: IMG.muttonStarter,
+            name: "Chicken Fry",
+            price: 190,
+            description: "Spiced chicken pieces fried until crisp and flavorful.",
+            imageCategory: "chicken",
           },
           {
-            name: "Mutton Ghee Roast",
-            price: 340,
-            description:
-              "Mutton slow-roasted in ghee with a fiery Mangalorean-style spice blend.",
-            image: IMG.muttonStarter,
+            name: "Chicken Ghee Roast",
+            price: 230,
+            description: "Chicken roasted with ghee and a rich blend of aromatic spices.",
+            imageCategory: "chicken",
           },
           {
-            name: "Mutton Sukka",
-            price: 330,
-            description:
-              "Mutton simmered and roasted dry with coconut and roasted spices.",
-            image: IMG.muttonStarter,
-          },
-        ],
-      },
-      {
-        title: "Fish",
-        items: [
-          {
-            name: "Fish Fry",
-            price: 280,
-            description:
-              "Marinated fish fillets shallow-fried with a crisp spiced coating.",
-            image: IMG.fishFry,
+            name: "Egg Chicken Lollipop",
+            price: 210,
+            description: "Chicken lollipop prepared with an egg-based coating and spices.",
+            imageCategory: "chicken",
           },
           {
-            name: "Apollo Fish",
-            price: 290,
-            description:
-              "Boneless fish tossed in a spicy Indo-Chinese style batter and sauce.",
-            image: IMG.fishFry,
+            name: "Chicken Lollipop Manchurian",
+            price: 210,
+            description: "Crispy chicken lollipop tossed in a tangy Manchurian sauce.",
+            imageCategory: "chicken",
           },
           {
-            name: "Fish Tikka",
-            price: 300,
-            description:
-              "Chunks of fish marinated in tandoori spices and char-grilled.",
-            image: IMG.fishFry,
+            name: "Pudina Chicken",
+            price: 200,
+            description: "Chicken flavored with fresh mint and aromatic spices.",
+            imageCategory: "chicken",
           },
           {
-            name: "Fish Manchurian",
-            price: 280,
-            description: "Crispy fish tossed in a tangy Manchurian sauce.",
-            image: IMG.fishFry,
+            name: "Dragon Chicken",
+            price: 200,
+            description: "Crispy chicken tossed in a spicy Indo-Chinese dragon-style sauce.",
+            imageCategory: "chicken",
           },
         ],
       },
     ],
   },
+
   {
     id: "nonveg-main",
-    label: "Non-Veg Main Course",
+    label: "Non-Vegetarian Main Course",
     subsections: [
       {
-        title: "Chicken",
+        title: "Chicken Curries",
         items: [
           {
-            name: "Butter Chicken",
-            price: 300,
-            description:
-              "Tandoori chicken simmered in a velvety butter-tomato gravy.",
-            image: IMG.butterChicken,
-          },
-          {
-            name: "Chicken Curry",
-            price: 260,
-            description:
-              "Chicken cooked in a traditional onion-tomato spiced curry.",
-            image: IMG.butterChicken,
-          },
-          {
-            name: "Kadai Chicken",
-            price: 280,
-            description: "Chicken and peppers tossed in a bold kadai masala.",
-            image: IMG.butterChicken,
+            name: "Chicken Kadai",
+            price: 200,
+            description: "Chicken cooked with peppers and aromatic kadai spices.",
+            imageCategory: "chicken",
           },
           {
             name: "Chicken Masala",
-            price: 270,
-            description: "Chicken simmered in a rich, spiced masala gravy.",
-            image: IMG.butterChicken,
+            price: 200,
+            description: "Chicken simmered in a rich and flavorful masala gravy.",
+            imageCategory: "chicken",
           },
           {
-            name: "Chicken Tikka Masala",
-            price: 310,
-            description:
-              "Grilled chicken tikka simmered in a creamy spiced tomato gravy.",
-            image: IMG.butterChicken,
-          },
-        ],
-      },
-      {
-        title: "Mutton",
-        items: [
-          {
-            name: "Mutton Curry",
-            price: 350,
-            description: "Mutton slow-cooked in a traditional spiced curry.",
-            image: IMG.muttonCurry,
+            name: "Chicken Hyderabadi",
+            price: 210,
+            description: "Chicken prepared in a rich Hyderabadi-style spiced gravy.",
+            imageCategory: "chicken",
           },
           {
-            name: "Mutton Rogan Josh",
-            price: 380,
-            description:
-              "Mutton simmered in an aromatic Kashmiri-style red gravy.",
-            image: IMG.muttonCurry,
+            name: "Butter Chicken Masala",
+            price: 200,
+            description: "Chicken cooked in a rich buttery tomato-based masala gravy.",
+            imageCategory: "chicken",
           },
           {
-            name: "Mutton Kadai",
-            price: 360,
-            description: "Mutton cooked with peppers in a robust kadai masala.",
-            image: IMG.muttonCurry,
+            name: "Guntur Masala",
+            price: 210,
+            description: "Chicken preparation featuring bold and spicy Guntur-style masala.",
+            imageCategory: "chicken",
           },
           {
-            name: "Mutton Keema Masala",
-            price: 340,
-            description: "Minced mutton cooked with peas in a spiced masala.",
-            image: IMG.muttonCurry,
-          },
-        ],
-      },
-      {
-        title: "Fish",
-        items: [
-          {
-            name: "Fish Curry",
-            price: 290,
-            description: "Fish simmered in a tangy, spiced coconut-based curry.",
-            image: IMG.fishCurry,
-          },
-          {
-            name: "Fish Masala",
-            price: 300,
-            description: "Fish cooked in a rich onion-tomato spiced masala.",
-            image: IMG.fishCurry,
+            name: "Chicken Kolhapuri",
+            price: 210,
+            description: "Chicken cooked in a bold and spicy Kolhapuri-style gravy.",
+            imageCategory: "chicken",
           },
         ],
       },
     ],
   },
+
   {
-    id: "biryani",
-    label: "Biryanis",
+    id: "mutton",
+    label: "Mutton",
     subsections: [
       {
+        title: "Mutton Starters",
+        items: [
+          {
+            name: "Mutton Fry",
+            price: 260,
+            description: "Spiced mutton pieces fried until tender and flavorful.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Ghee Roast",
+            price: 270,
+            description: "Mutton roasted with ghee and a rich blend of aromatic spices.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Dry",
+            price: 260,
+            description: "Tender mutton cooked with aromatic spices and served dry.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Manchurian",
+            price: 260,
+            description: "Mutton pieces tossed in a tangy and spicy Manchurian sauce.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Boti Fry",
+            price: 180,
+            description: "Spiced mutton boti pieces fried until tender and flavorful.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Head Fry",
+            price: 190,
+            description: "Mutton head pieces prepared with aromatic spices and fried.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Egg Boti",
+            price: 210,
+            description: "Mutton boti prepared with egg and aromatic spices.",
+            imageCategory: "mutton",
+          },
+        ],
+      },
+      {
+        title: "Mutton Curries",
+        items: [
+          {
+            name: "Mutton Kadai",
+            price: 270,
+            description: "Tender mutton cooked with peppers and bold kadai spices.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Masala",
+            price: 270,
+            description: "Mutton simmered in a rich and flavorful masala gravy.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Hyderabadi",
+            price: 270,
+            description: "Mutton prepared in a rich Hyderabadi-style spiced gravy.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Boti Masala",
+            price: 210,
+            description: "Mutton boti pieces cooked in a rich spiced masala gravy.",
+            imageCategory: "mutton",
+          },
+          {
+            name: "Mutton Head Masala",
+            price: 210,
+            description: "Mutton head pieces cooked in an aromatic masala gravy.",
+            imageCategory: "mutton",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "fish",
+    label: "Fish",
+    subsections: [
+      {
+        title: "Fish Starters",
+        items: [
+          {
+            name: "Pomfret Fish Tawa Fry",
+            price: 180,
+            description: "Pomfret seasoned with spices and cooked on the tawa.",
+            imageCategory: "fish",
+          },
+          {
+            name: "Basa Fish Tawa Fry",
+            price: 200,
+            description: "Basa fish seasoned with spices and cooked on the tawa.",
+            imageCategory: "fish",
+          },
+          {
+            name: "Bangda Fish Tawa Fry",
+            price: 200,
+            description: "Bangda fish seasoned with spices and cooked on the tawa.",
+            imageCategory: "fish",
+          },
+        ],
+      },
+      {
+        title: "Fish Curries",
+        items: [
+          {
+            name: "Pomfret Fish Masala",
+            price: 190,
+            description: "Pomfret cooked in a rich and flavorful masala gravy.",
+            imageCategory: "fish",
+          },
+          {
+            name: "Bangda Fish Masala",
+            price: 220,
+            description: "Bangda fish cooked in an aromatic spiced masala gravy.",
+            imageCategory: "fish",
+          },
+        ],
+      },
+    ],
+  },
+
+  {
+    id: "biryanis-rice",
+    label: "Biryanis & Rice",
+    subsections: [
+      {
+        title: "Veg Biryanis and Rice",
         items: [
           {
             name: "Veg Biryani",
-            price: 200,
-            description:
-              "Basmati rice layered with mixed vegetables and aromatic spices.",
-            image: IMG.vegBiryani,
+            price: 150,
+            description: "Fragrant rice cooked with mixed vegetables and aromatic spices.",
+            imageCategory: "biryani",
           },
           {
             name: "Paneer Biryani",
-            price: 230,
-            description:
-              "Fragrant basmati rice layered with spiced paneer cubes.",
-            image: IMG.vegBiryani,
+            price: 150,
+            description: "Fragrant rice cooked with paneer and aromatic spices.",
+            imageCategory: "biryani",
           },
           {
             name: "Mushroom Biryani",
-            price: 220,
-            description: "Basmati rice cooked with mushrooms and whole spices.",
-            image: IMG.vegBiryani,
+            price: 150,
+            description: "Fragrant rice cooked with mushrooms and aromatic spices.",
+            imageCategory: "biryani",
           },
           {
-            name: "Egg Biryani",
-            price: 220,
-            description: "Basmati rice layered with spiced boiled eggs.",
-            image: IMG.eggBiryani,
+            name: "Kaju Rice",
+            price: 180,
+            description: "Fragrant rice prepared with cashews and aromatic seasoning.",
+            imageCategory: "kaju",
           },
           {
-            name: "Chicken Dum Biryani",
-            price: 260,
-            description:
-              "Basmati rice and marinated chicken slow-cooked together in a sealed pot.",
-            image: IMG.chickenBiryani,
+            name: "Paneer Fried Rice",
+            price: 150,
+            description: "Wok-tossed rice with paneer and flavorful seasoning.",
+            imageCategory: "rice",
           },
           {
-            name: "Chicken Fry Piece Biryani",
-            price: 280,
-            description: "Dum biryani served with a crispy fried chicken piece.",
-            image: IMG.chickenBiryani,
+            name: "Mushroom Fried Rice",
+            price: 150,
+            description: "Wok-tossed rice with mushrooms and flavorful seasoning.",
+            imageCategory: "rice",
           },
           {
-            name: "Chicken Boneless Biryani",
-            price: 300,
-            description: "Fragrant biryani made with tender boneless chicken.",
-            image: IMG.chickenBiryani,
+            name: "Dal Rice",
+            price: 130,
+            description: "Rice served with flavorful dal for a comforting combination.",
+            imageCategory: "dal",
           },
           {
-            name: "Mutton Biryani",
-            price: 350,
-            description: "Basmati rice layered with slow-cooked, spiced mutton.",
-            image: IMG.muttonBiryani,
-          },
-          {
-            name: "Fish Biryani",
-            price: 320,
-            description:
-              "Basmati rice cooked with marinated fish and warm spices.",
-            image: IMG.fishCurry,
-          },
-          {
-            name: "Special Bhagini Gold Family Biryani",
-            price: 650,
-            description:
-              "Our signature family-size biryani loaded with chicken, mutton and boiled eggs.",
-            image: IMG.tandooriPlatter,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: "rice-noodles",
-    label: "Rice & Noodles",
-    subsections: [
-      {
-        title: "Rice",
-        items: [
-          {
-            name: "Steam Rice",
-            price: 100,
-            description: "Plain steamed basmati rice.",
-            image: IMG.steamedRice,
-          },
-          {
-            name: "Jeera Rice",
-            price: 140,
-            description: "Basmati rice tempered with roasted cumin seeds.",
-            image: IMG.steamedRice,
+            name: "Palak Rice",
+            price: 130,
+            description: "Rice prepared with spinach and aromatic spices.",
+            imageCategory: "rice",
           },
           {
             name: "Ghee Rice",
-            price: 150,
-            description:
-              "Fragrant basmati rice cooked in aromatic ghee and whole spices.",
-            image: IMG.steamedRice,
+            price: 130,
+            description: "Fragrant rice prepared with ghee and aromatic spices.",
+            imageCategory: "rice",
+          },
+          {
+            name: "Jeera Rice",
+            price: 100,
+            description: "Fragrant rice tempered with roasted cumin seeds.",
+            imageCategory: "rice",
+          },
+          {
+            name: "Tomata",
+            price: 100,
+            description: "Rice prepared with tomato and aromatic spices.",
+            imageCategory: "rice",
           },
           {
             name: "Veg Fried Rice",
-            price: 170,
-            description:
-              "Wok-tossed rice with mixed vegetables and soy seasoning.",
-            image: IMG.friedRice,
+            price: 100,
+            description: "Wok-tossed rice prepared with mixed vegetables and seasoning.",
+            imageCategory: "rice",
           },
           {
-            name: "Egg Fried Rice",
-            price: 190,
-            description: "Wok-tossed rice with scrambled egg and vegetables.",
-            image: IMG.friedRice,
+            name: "Curd Rice",
+            price: 100,
+            description: "Soft rice combined with cooling curd and mild seasoning.",
+            imageCategory: "rice",
           },
           {
-            name: "Chicken Fried Rice",
-            price: 220,
-            description: "Wok-tossed rice with diced chicken and vegetables.",
-            image: IMG.friedRice,
-          },
-          {
-            name: "Schezwan Fried Rice",
-            price: 200,
-            description: "Rice tossed in a fiery Schezwan sauce with vegetables.",
-            image: IMG.friedRice,
+            name: "Lemon Rice",
+            price: 100,
+            description: "Rice flavored with fresh lemon and aromatic seasoning.",
+            imageCategory: "rice",
           },
         ],
       },
       {
-        title: "Noodles",
+        title: "Egg Biryanis and Rice",
         items: [
           {
-            name: "Veg Noodles",
-            price: 170,
-            description: "Stir-fried noodles tossed with fresh vegetables.",
-            image: IMG.noodles,
+            name: "Egg Biryani",
+            price: 130,
+            description: "Fragrant rice prepared with eggs and aromatic biryani spices.",
+            imageCategory: "biryani",
           },
           {
-            name: "Egg Noodles",
-            price: 190,
-            description:
-              "Stir-fried noodles tossed with scrambled egg and vegetables.",
-            image: IMG.noodles,
+            name: "Egg Fried Rice",
+            price: 100,
+            description: "Wok-tossed rice prepared with egg and flavorful seasoning.",
+            imageCategory: "rice",
+          },
+        ],
+      },
+      {
+        title: "Chicken Biryanis and Rice",
+        items: [
+          {
+            name: "Chicken Biryani",
+            price: 160,
+            description: "Fragrant biryani rice cooked with seasoned chicken and aromatic spices.",
+            imageCategory: "biryani",
           },
           {
-            name: "Chicken Noodles",
-            price: 220,
-            description: "Stir-fried noodles tossed with chicken and vegetables.",
-            image: IMG.noodles,
+            name: "Chicken Fried Rice",
+            price: 150,
+            description: "Wok-tossed rice prepared with chicken and flavorful seasoning.",
+            imageCategory: "rice",
+          },
+        ],
+      },
+      {
+        title: "Mutton Biryanis and Rice",
+        items: [
+          {
+            name: "Mutton Boti Rice",
+            price: 210,
+            description: "Fragrant rice served with flavorful mutton boti pieces.",
+            imageCategory: "rice",
+          },
+          {
+            name: "Mutton Fried Rice",
+            price: 260,
+            description: "Wok-tossed rice prepared with mutton and flavorful seasoning.",
+            imageCategory: "rice",
+          },
+          {
+            name: "Mutton Boti Rice",
+            price: 210,
+            description: "Fragrant rice served with flavorful mutton boti pieces.",
+            imageCategory: "rice",
           },
         ],
       },
     ],
   },
+
   {
     id: "breads",
     label: "Indian Breads",
@@ -699,57 +957,91 @@ const menuSections: MenuSection[] = [
           {
             name: "Tandoori Roti",
             price: 25,
-            description: "Whole wheat bread baked fresh in the tandoor.",
-            image: IMG.naanBread,
+            description: "Whole wheat roti baked in the traditional tandoor.",
+            imageCategory: "breads",
           },
           {
             name: "Butter Roti",
             price: 30,
-            description: "Tandoori roti finished with a brush of melted butter.",
-            image: IMG.naanBread,
+            description: "Tandoori roti finished with melted butter.",
+            imageCategory: "breads",
           },
           {
             name: "Plain Naan",
-            price: 40,
-            description: "Soft leavened bread baked in the tandoor.",
-            image: IMG.naanBread,
+            price: 50,
+            description: "Soft leavened naan baked fresh in the tandoor.",
+            imageCategory: "breads",
           },
           {
             name: "Butter Naan",
             price: 50,
-            description: "Tandoori naan finished with a brush of melted butter.",
-            image: IMG.naanBread,
+            description: "Soft tandoori naan finished with melted butter.",
+            imageCategory: "breads",
           },
           {
             name: "Garlic Naan",
             price: 60,
-            description:
-              "Naan topped with fresh chopped garlic and baked in the tandoor.",
-            image: IMG.naanBread,
+            description: "Soft naan topped with garlic and baked in the tandoor.",
+            imageCategory: "breads",
           },
           {
             name: "Kulcha",
             price: 45,
-            description: "Soft leavened bread stuffed and baked in the tandoor.",
-            image: IMG.naanBread,
+            description: "Soft leavened Indian bread baked in the tandoor.",
+            imageCategory: "breads",
           },
           {
             name: "Butter Kulcha",
-            price: 55,
-            description: "Kulcha finished with a brush of melted butter.",
-            image: IMG.naanBread,
-          },
-          {
-            name: "Roomali Roti",
-            price: 35,
-            description:
-              "Thin, soft handkerchief bread cooked on an inverted griddle.",
-            image: IMG.naanBread,
+            price: 45,
+            description: "Soft kulcha finished with melted butter.",
+            imageCategory: "breads",
           },
         ],
       },
     ],
   },
+
+  {
+    id: "tandoori",
+    label: "Tandoori Items",
+    subsections: [
+      {
+        items: [
+          {
+            name: "Paneer Tikka",
+            price: 210,
+            description: "Paneer marinated with aromatic spices and prepared in the tandoor.",
+            imageCategory: "tandoori",
+          },
+          {
+            name: "Mushroom Tikka",
+            price: 210,
+            description: "Mushrooms marinated with aromatic spices and prepared in the tandoor.",
+            imageCategory: "tandoori",
+          },
+          {
+            name: "Chicken Kalmi",
+            price: 180,
+            description: "Tender chicken prepared with aromatic spices in a tandoori style.",
+            imageCategory: "tandoori",
+          },
+          {
+            name: "Tandoori Chicken",
+            price: 210,
+            description: "Chicken marinated with aromatic spices and roasted in the tandoor.",
+            imageCategory: "tandoori",
+          },
+          {
+            name: "Hariyali Tikka",
+            price: 210,
+            description: "Tikka prepared with aromatic green herbs and tandoori spices.",
+            imageCategory: "tandoori",
+          },
+        ],
+      },
+    ],
+  },
+
   {
     id: "beverages",
     label: "Beverages",
@@ -758,20 +1050,19 @@ const menuSections: MenuSection[] = [
         items: [
           {
             name: "Mineral Water",
-            price: 20,
             description: "Chilled packaged drinking water.",
-            image: IMG.mineralWater,
+            imageCategory: "beverages",
           },
           {
             name: "Soft Drinks",
-            price: 40,
-            description: "Assorted chilled soft drinks served over ice.",
-            image: IMG.softDrinks,
+            description: "Assorted chilled soft drinks.",
+            imageCategory: "beverages",
           },
         ],
       },
     ],
   },
+
   {
     id: "bhagini-gold",
     label: "Bhagini Gold Specials",
@@ -779,60 +1070,19 @@ const menuSections: MenuSection[] = [
       {
         items: [
           {
-            name: "Bhagini Gold Special Chicken Biryani",
-            price: 350,
-            description:
-              "Our signature slow-cooked chicken biryani with a special house blend of spices.",
-            image: IMG.chickenBiryani,
+            name: "Bhagini Gold Chicken Special",
+            description: "A signature chicken preparation from the Bhagini Gold Specials menu.",
+            imageCategory: "chicken",
           },
           {
             name: "Bhagini Gold Mutton Special",
-            price: 450,
-            description:
-              "Signature mutton delicacy prepared with our chef's special masala.",
-            image: IMG.muttonBiryani,
+            description: "A signature mutton preparation from the Bhagini Gold Specials menu.",
+            imageCategory: "mutton",
           },
           {
             name: "Bhagini Gold Tandoori Platter",
-            price: 500,
-            description:
-              "An assorted grill platter of our best tandoori chicken, kebabs and tikkas.",
-            image: IMG.tandooriPlatter,
-          },
-          {
-            name: "Family Combo Meals",
-            price: 899,
-            description:
-              "A generous combo meal designed to be shared, with biryani, curry and sides.",
-            image: IMG.thali,
-          },
-          {
-            name: "Dhaba Style Chicken Curry",
-            price: 280,
-            description:
-              "Rustic highway-dhaba style chicken curry cooked in traditional spices.",
-            image: IMG.butterChicken,
-          },
-          {
-            name: "Dhaba Style Mutton Curry",
-            price: 380,
-            description:
-              "Rustic highway-dhaba style mutton curry slow-cooked in traditional spices.",
-            image: IMG.muttonCurry,
-          },
-          {
-            name: "Special Andhra Meals",
-            price: 320,
-            description:
-              "A full Andhra-style meal with rice, curries, and traditional accompaniments.",
-            image: IMG.thali,
-          },
-          {
-            name: "Special North Indian Thali",
-            price: 300,
-            description:
-              "A complete North Indian thali with dal, sabzi, roti, rice and accompaniments.",
-            image: IMG.thali,
+            description: "A special platter featuring assorted tandoori preparations.",
+            imageCategory: "tandoori",
           },
         ],
       },
@@ -840,14 +1090,68 @@ const menuSections: MenuSection[] = [
   },
 ];
 
+
+
+
 export default function Home() {
   const [activeSection, setActiveSection] = useState(menuSections[0].id);
+  const [showCategoryModal, setShowCategoryModal] = useState(true);
+
   const currentSection =
     menuSections.find((section) => section.id === activeSection) ??
     menuSections[0];
 
+  const handleCategorySelect = (sectionId: string) => {
+    setActiveSection(sectionId);
+    setShowCategoryModal(false);
+  };
+
   return (
     <div className="container">
+
+      {/* Initial Category Selection Modal */}
+      {showCategoryModal && (
+        <div className="category-modal-overlay">
+          <div className="category-modal">
+            <div className="category-modal-header">
+              <Image
+                src="/logo.png"
+                alt="Bhagini Gold Dhaba & Restaurant"
+                width={80}
+                height={80}
+                className="category-modal-logo"
+              />
+
+              <h2>Welcome to Bhagini Gold</h2>
+
+              <p>
+                What would you like to explore?
+              </p>
+            </div>
+
+            <div className="category-options">
+              {menuSections.map((section) => (
+                <button
+                  key={section.id}
+                  type="button"
+                  className="category-option"
+                  onClick={() => handleCategorySelect(section.id)}
+                >
+                  <span className="category-option-title">
+                    {section.label}
+                  </span>
+
+                  <span className="category-option-arrow">
+                    →
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Header */}
       <div className="header">
         <div className="brand-row">
           <Image
@@ -857,18 +1161,27 @@ export default function Home() {
             height={100}
             className="brand-logo"
           />
-          <h1 className="brand-name">BHAGINI GOLD DHABA &amp; RESTAURANT</h1>
+
+          <h1 className="brand-name">
+            BHAGINI GOLD DHABA &amp; RESTAURANT
+          </h1>
         </div>
-        <p className="tagline">Authentic Taste • Premium Experience</p>
+
+        <p className="tagline">
+          Authentic Taste • Premium Experience
+        </p>
       </div>
 
+      {/* Existing Tabs */}
       <div className="tabs">
         {menuSections.map((section) => (
           <button
             key={section.id}
             type="button"
             className={
-              section.id === activeSection ? "tab tab-active" : "tab"
+              section.id === activeSection
+                ? "tab tab-active"
+                : "tab"
             }
             onClick={() => setActiveSection(section.id)}
           >
@@ -877,27 +1190,48 @@ export default function Home() {
         ))}
       </div>
 
+      {/* Current Menu */}
       {currentSection.subsections.map((subsection, index) => (
-        <div key={subsection.title ?? index} className="subsection">
+        <div
+          key={subsection.title ?? index}
+          className="subsection"
+        >
           {subsection.title && (
-            <h2 className="subsection-title">{subsection.title}</h2>
+            <h2 className="subsection-title">
+              {subsection.title}
+            </h2>
           )}
+
           <div className="menu-container">
-            {subsection.items.map((item) => (
-              <div className="menu-item" key={item.name}>
+            {subsection.items.map((item, itemIndex) => (
+              <div
+                className="menu-item"
+                key={`${item.name}-${itemIndex}`}
+              >
                 <div className="item-image-wrap">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={item.image}
+                    src={getMenuImage(item.name, item.imageCategory)}
                     alt={item.name}
                     className="item-image"
                     loading="lazy"
                   />
-                  <span className="price-badge">₹{item.price}</span>
+
+                  {item.price !== undefined && (
+                    <span className="price-badge">
+                      ₹{item.price}
+                    </span>
+                  )}
                 </div>
+
                 <div className="item-body">
-                  <h3 className="item-title">{item.name}</h3>
-                  <p className="item-description">{item.description}</p>
+                  <h3 className="item-title">
+                    {item.name}
+                  </h3>
+
+                  <p className="item-description">
+                    {item.description}
+                  </p>
                 </div>
               </div>
             ))}
@@ -905,6 +1239,7 @@ export default function Home() {
         </div>
       ))}
 
+      {/* Footer */}
       <div className="footer">
         <p className="closing-tagline">
           &ldquo;Where Every Meal Feels Like Home&rdquo;

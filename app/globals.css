@@ -255,3 +255,122 @@ body {
     gap: 14px;
   }
 }
+
+
+
+
+.category-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+}
+
+.category-modal {
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #fff;
+  border-radius: 20px;
+
+  padding: 30px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+
+  animation: categoryModalIn 0.25s ease-out;
+}
+
+@keyframes categoryModalIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.category-modal-header {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #7a1f1f;
+}
+
+.category-modal-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  margin: 0 auto 12px;
+}
+
+.category-modal-header h2 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.category-modal-header p {
+  margin: 8px 0 0;
+  color: #666;
+  font-size: 15px;
+}
+
+.category-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.category-option {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 18px;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+
+  background: #fff;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.category-option:hover {
+  background: #faf7f2;
+  border-color: #c99b5a;
+  transform: translateX(3px);
+}
+
+.category-option-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #222;
+}
+
+.category-option-arrow {
+  font-size: 20px;
+  color: #a06a2c;
+}
